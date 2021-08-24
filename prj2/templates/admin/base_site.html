@@ -1,0 +1,19 @@
+{% extends 'admin/base.html' %}   #base.html django system 
+{% load static %}   
+
+{% block extrahead %}
+<link rel="shortcut icon" href="{% static 'images/xyz.ico'%}" type="image/x-icon">
+{% endblock %}
+
+
+{% block title %}
+{{ title }} | {{site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'home' %}">Lubna's web application</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+
+{% endblock%}

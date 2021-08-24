@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+{# {% block title %} {{ heading }} {% endblock %} #}
+{% block content %}  
+        <div>
+            <div class="well">
+                <a href="{% url 'employee:create' %}" class="btn btn-primary">Add New</a>
+            </div>
+           
+            <table id="myTable" class="table table-striped DataTable">
+                <thead>
+                    <tr class="table-dark">
+                        <th>Serial #</th>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Email Address</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Salary</th>
+                        
+                        <th>Photo</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ emp.id }}</td>
+                        <td>{{emp.name}}</td> 
+                        <td>{{ emp.email }}</td>
+                        <td>{{ emp.dob|date:'Y-m-d' }}</td>
+                        <td>{{ emp.gender }}</td>
+                        <td>{{ emp.salary|floatformat:1 }}</td>
+                       
+                        <td>
+                            <img src="{{ emp.photo.url }}" alt="no image" class="rounded-circle " width="50px"height="50px">
+                        </td>
+                        <td>
+                            <a href="{% url 'employee:details' emp.id %}" class="btn btn-info" title="view"><i class="fa fa-eye" style="font-size:24px"></i></a>
+                            <a href="{% url 'employee:edit' emp.id %}" class="btn btn-warning" title="Edit"><i class='fas fa-edit' style='font-size:24px'></i></a>
+                            <a href="{% url 'employee:delete' emp.id %}" class="btn btn-danger" title="Delete"><i class="fa fa-trash" style="font-size:24px"></i></a>
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+{% endblock %}

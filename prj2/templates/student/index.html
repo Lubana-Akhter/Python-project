@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+{# {% block title %} List of Student {% endblock %} #}
+{% block content %}  
+        <div>
+            <div class="well">
+                <a href="{% url 'student:create' %}" class="btn btn-primary">Add New</a>
+            </div>
+           
+            <table id="myTable" class="table table-striped DataTable">
+                <thead>
+                    <tr class="table-dark">
+                        <th>Student Id</th>
+                        <th>Student Name</th>
+                        <th>Email Address</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for std in students %}
+                    <tr>
+                        <td>{{ std.id }}</td>
+                        <td>{{std.name }}</td>
+                        <td>{{ std.email }}</td>
+                        <td>{{ std.dob|date:'Y-m-d' }}</td>
+                        <td>{{ std.gender }}</td>
+                        <td>
+                            <a href="{% url 'student:details' std.id %}" class="btn btn-info" title="view"><i class="fa fa-eye" style="font-size:24px"></i></a>
+                            <a href="{% url 'student:edit' std.id %}" class="btn btn-warning" title="Edit"><i class='fas fa-edit' style='font-size:24px'></i></a>
+                            <a href="{% url 'student:delete' std.id %}" class="btn btn-danger" title="Delete"><i class="fa fa-trash" style="font-size:24px"></i></a>
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div>
+{% endblock %}

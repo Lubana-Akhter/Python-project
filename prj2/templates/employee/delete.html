@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %} 
+        <form  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}       
+           <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Delete Employee</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="lead">Are you want to delete <strong>{{object_name}}?</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Confirm Detete</button>
+          <a href="{% url 'employee:list' %}" class="btn btn-warning"> back</a>
+        </div>
+      </div>
+    </div>
+  </div>
+        </form>
+        
+        <!-- <div class="form-group row">
+            <a href="/index/" class="btn btn-primary">Back</a>
+        </div> -->
+{% endblock%}

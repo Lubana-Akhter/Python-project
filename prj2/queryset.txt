@@ -1,0 +1,45 @@
+Day: 23, django ORM query
+
+python manage.py shell
+
+from myapp.models import Student
+
+Student.objects.all()
+Student.objects.get(id = 11)
+Student.objects.get(name__exact = 'Sarin Reza')
+Student.objects.get(name__iexact = 'sarin reza')
+Student.objects.get(name__startswith = 'Elizabeth')     ---get method only akta pay
+
+Student.objects.filter(name__startswith = 'Elizabeth')
+Student.objects.filter(name__startswith = 's')
+
+Student.objects.filter(name__endswith = 'a')
+
+Student.objects.filter(name__contains = 'a')
+
+Student.objects.filter(id__in = [1, 5, 12])
+
+Student.objects.filter(id__gt = 200)
+Student.objects.filter(id__lt = 10)
+
+Student.objects.filter(id__gte = 100)
+Student.objects.filter(id__lte = 10)
+
+Student.objects.values()    #use to see all data like dictionary
+Student.objects.values('id', 'name') 
+Student.objects.values('name', 'dob')
+
+Create: std1 = Student.objects.create(name = 'Labiba', email = 'labiba@gmail.com', dob = '1980-04-02')
+
+Create: std2 = Student(name = 'Samiha', email = 'samiha@gmail.com', dob = '2004-04-02')
+        std2.save()      #constructor diye create korle save() command dite hobe,
+Update: Student.objects.filter(pk = 10).update(name = 'Soha sifat')
+
+delete: Student.objects.filter(pk = 10).delete()
+
+for x in Student.objects.raw('select id, name from myapp_Student'):
+    print(x.name)
+
+Student.objects.order_by('name') #asending
+Student.objects.order_by('-name') #desending
+Student.objects.order_by('-id')

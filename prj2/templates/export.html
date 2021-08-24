@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+ <h2>Export data</h2>
+ <h3>Exporting from Database</h3>
+ <form method="POST" enctype="multipart/form-data">
+   {% csrf_token %}
+   <p>Select formate of file</p>
+   <select name="file_format" id="" class="form-control my-3">
+       <option>CSV</option>
+       <option>JSON</option>
+       <option>XLS</option>
+       <option>HTML</option>
+   </select>
+   <br>
+   <button class="btn btn-primary" type="submit">Export</button>
+</form>
+<a href="{% url 'home'%}">Back</a>
+ {% endblock %}

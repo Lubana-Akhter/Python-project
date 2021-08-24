@@ -1,0 +1,23 @@
+ base.html:inter script tag
+
+//print, pc:present content, oc:old content
+        function printDiv(divname){
+          //alert('ok');
+          var pc = document.getElementById(divname).innerHTML;
+          var oc = document.body.innerHTML;
+          document.body.innerHTML = pc;
+          window.print();
+          document.body.innerHTML = oc;
+        }
+
+which page want to print:
+details.html:
+<div id="report">
+<button onclick="printDiv('report');" class="btn btn-warning">Print</button>
+ 
+</div>
+
+NOW TRY BY YPURSELF:
+
+Shoping card: product table, category, order,
+Payment method stripe.
